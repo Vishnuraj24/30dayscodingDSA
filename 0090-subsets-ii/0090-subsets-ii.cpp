@@ -9,13 +9,22 @@ private:
             return ;
         }
         
-        //exclude
-        generatesubsets(nums,subset,index+1,output);
         
-        //include
+       
+        
+         //include
         subset.push_back(nums[index]);
         generatesubsets(nums,subset,index+1,output); //backtracking
-    
+        
+        //skip the duplicates
+        while(index + 1 < nums.size() && nums[index] == nums[index+1]){
+            index = index+1;
+        }
+        
+         //exclude
+        subset.pop_back();
+        generatesubsets(nums,subset,index+1,output);
+       
     }
     
 public:
@@ -29,14 +38,6 @@ public:
         
         generatesubsets(nums,subset,start,output);
         
-        //remove the duplicate vectors
-        sort(output.begin(), output.end());
-
-        // Remove duplicates
-        auto it = unique(output.begin(), output.end());
-
-        // Erase the redundant elements
-        output.erase(it, output.end());
         
         return output;    
     
