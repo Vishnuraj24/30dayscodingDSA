@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<vector<int>>output;
-    void solve(int start,int k,vector<int> temp,int& n){
+    void solve(int start,int k,vector<int>& temp,int& n){
         
         //base case
         if(k == 0){
