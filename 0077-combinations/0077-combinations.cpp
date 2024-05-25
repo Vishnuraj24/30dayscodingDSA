@@ -1,38 +1,30 @@
 class Solution {
 public:
-    int s;
-    vector<vector<int>> output;
-    void solve(vector<int>&nums,vector<int>temp,int index){
+    vector<vector<int>>output;
+    void solve(int start,int k,vector<int> temp,int& n){
         
         //base case
-        if(temp.size() == s){
+        if(k == 0){
             output.push_back(temp);
+            return;
         }
         
         //main logic
         
-        for(int i = index; i < nums.size(); i++){
+        for(int i = start; i <= n ; i++){
             
-            temp.push_back(nums[i]); //do something
-            solve(nums,temp,i+1); //explore
-            
+            temp.push_back(i); //do something
+            solve(i+1,k-1,temp,n); //explore
             temp.pop_back();   //revert to step 1
-           
         }
         
     }
     
     
     vector<vector<int>> combine(int n, int k) {
-        vector<int>nums;
         vector<int>temp;
-        s = k;
-        int start = 0;
-        for(int i = 1 ; i <= n; i++){
-            nums.push_back(i);
-        }
         
-        solve(nums,temp,start);
+        solve(1,k,temp,n);
         return output;
         
     }
