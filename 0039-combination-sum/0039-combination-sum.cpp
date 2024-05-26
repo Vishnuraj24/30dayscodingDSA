@@ -17,7 +17,7 @@ public:
         //main logic
         
         for(int i = index; i < candidates.size(); i++){
-            
+            if(i > index && candidates[i] == candidates[i-1]) continue;
             temp.push_back(candidates[i]); //do something
             solve(candidates,temp,remain - candidates[i],i); //explore
             
